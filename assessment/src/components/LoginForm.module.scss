@@ -1,0 +1,23 @@
+@import '../styles/variables.scss';
+
+.LoginForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-height: 500px;
+    // background-color: aqua;
+    font-size: 1.8rem;
+    & > input {
+        padding: 12px;
+        font-size: 1rem;
+    }
+    & > button {
+        color: white;
+        background-color: lightsalmon;
+        padding: 12px;
+        border-radius: 8px;
+    }
+    & > button:hover {
+        background-color: lightpink;
+    }
+}

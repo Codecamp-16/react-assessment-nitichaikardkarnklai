@@ -6,12 +6,14 @@ export default function LoginContextProvider({ children }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLogin, setIsLogin] = useState(false);
+    const [userObj, setUserObj] = useState({});
 
     return (
         <LoginContext.Provider value={{
             email, setEmail,
             password, setPassword,
-            isLogin, setIsLogin
+            isLogin, setIsLogin,
+            userObj, setUserObj
         }}>{children}</LoginContext.Provider>
     )
 }

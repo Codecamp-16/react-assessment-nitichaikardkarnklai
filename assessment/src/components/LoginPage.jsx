@@ -5,14 +5,12 @@ import LoginForm from './LoginForm';
 function LoginPage() {
 
   return (
-
-      <main className={styles.LoginPage}>
-        <div className={styles.LoginPage__window}>
-          <h1>Welcome</h1>
-          <LoginForm />
-        </div>
-      </main>
-
+    <main className={styles.LoginPage}>
+      <div className={styles.LoginPage__window}>
+        <h1>Welcome</h1>
+        <LoginForm />
+      </div>
+    </main>
   )
 }
 

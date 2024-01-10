@@ -3,9 +3,18 @@ import React, { createContext, useContext, useState } from 'react'
 const TodoContext = createContext();
 
 export default function TodoContextProvider({ children }) {
-    const [newTodo, setNewTodo] = useState({});
+    const [newTodo, setNewTodo] = useState(""); // {todo: xxx, id: xxx}
+    const [todoList, setTodoList] = useState([{todo: "test"}]);
+    const [addTask, setAddTask] = useState(false); 
     return (
-        <TodoContext.Provider value={{}}>{children}</TodoContext.Provider>
+        <TodoContext.Provider value={{
+            todoList,
+            setTodoList,
+            addTask,
+            setAddTask,
+            newTodo, 
+            setNewTodo
+        }}>{children}</TodoContext.Provider>
     )
 }
 

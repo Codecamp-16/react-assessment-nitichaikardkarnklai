@@ -1,0 +1,23 @@
+@import '../styles/variables.scss';
+
+.todoItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.buttonGroup {
+    display: flex;
+    gap: 8px;
+    & > button {
+        padding: 8px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background-color: rgb(31, 161, 77);
+        color: $white;
+    }
+    & > .deleteBtn {
+        background-color: red;
+    }
+
+}

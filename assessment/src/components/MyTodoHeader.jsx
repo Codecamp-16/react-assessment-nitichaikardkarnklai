@@ -1,12 +1,36 @@
 import React from 'react'
 import styles from "./MyTodosPage.module.scss"
+import { useTodo } from '../context/TodoContext';
 
 function MyTodoHeader() {
+    const { addTask, setAddTask, setTodoList, newTodo, setNewTodo } = useTodo();
 
+    const handleAddTask = () => setAddTask(true);
+    const handleChangeInput = (event) => {
+        setNewTodo(event.target.value);
+        // console.log(event.target.value);
+    };
+    const handleSubmitTask = (event) => {
+        event.preventDefault();
+        // console.log("submit task");
+        if (addTask) {
+            const newTodoObj = {
+                todo: newTodo
+            }
+            setTodoList(curr => [newTodoObj, ...curr]);
+            setNewTodo("");
+            setAddTask(false);
+        }
+    }
     return (
         <header className={styles.MyTodosPage__header}>
             <h1>MyTodo</h1>
-            <button>New Task</button>
+            <button onClick={handleAddTask}>New Task</button>
+            {addTask? 
+                <form>
+                    <input onChange={handleChangeInput} value={newTodo}></input>
+                    <button type='submit' onClick={handleSubmitTask}>Add Task</button>
+                </form>: null}
         </header>
     )
 }

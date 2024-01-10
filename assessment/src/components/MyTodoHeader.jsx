@@ -1,6 +1,7 @@
-import React from 'react'
-import styles from "./MyTodosPage.module.scss"
+import React from 'react';
+import styles from "./MyTodosPage.module.scss";
 import { useTodo } from '../context/TodoContext';
+import { nanoid } from 'nanoid';
 
 function MyTodoHeader() {
     const { addTask, setAddTask, setTodoList, newTodo, setNewTodo } = useTodo();
@@ -13,9 +14,11 @@ function MyTodoHeader() {
     const handleSubmitTask = (event) => {
         event.preventDefault();
         // console.log("submit task");
-        if (addTask) {
+        if (newTodo) {
             const newTodoObj = {
-                todo: newTodo
+                todo: newTodo,
+                id: nanoid(),
+                status: false
             }
             setTodoList(curr => [newTodoObj, ...curr]);
             setNewTodo("");

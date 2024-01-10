@@ -8,8 +8,8 @@ function MyTodoList() {
 
     return (
         <div>
-            {todoList.map((el, id) => {
-                return <TodoItem key={id} todo={el.todo} />
+            {todoList.map((el) => {
+                return <TodoItem key={el.id} todoItem={el} />
             })}
         </div>
     )

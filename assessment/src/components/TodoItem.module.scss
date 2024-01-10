@@ -21,3 +21,19 @@
     }
 
 }
+.taskGroup {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.checkIcon {
+    border-radius: 50%;
+    border: 1px solid black;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    &:hover {
+        color: gray;
+        border: 1px solid gray;
+    }
+}

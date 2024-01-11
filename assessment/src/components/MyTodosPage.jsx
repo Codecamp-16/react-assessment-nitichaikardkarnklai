@@ -7,12 +7,12 @@ import { useLogin } from '../context/LoginContext';
 
 function MyTodosPage() {
   const { getMe, fetchAllTodo } = useLogin();
-
+  
   useEffect(() => {
-    getMe()
-      .then(() =>
-        fetchAllTodo())
-      .catch((err) => console.log(err));
+    // getMe()
+    //   .then(() => fetchAllTodo())
+    //   .catch((err) => console.log(err));
+    fetchAllTodo();
   }, [])
 
   return (

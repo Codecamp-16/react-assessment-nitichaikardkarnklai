@@ -2,9 +2,12 @@ import React from 'react';
 import styles from "./MyTodosPage.module.scss";
 import { useTodo } from '../context/TodoContext';
 import { nanoid } from 'nanoid';
+import { useLogin } from '../context/LoginContext';
+import axios from 'axios';
 
 function MyTodoHeader() {
     const { addTask, setAddTask, setTodoList, newTodo, setNewTodo } = useTodo();
+    const { userObj } = useLogin();
 
     const handleAddTask = () => setAddTask(true);
     const handleChangeInput = (event) => {
@@ -15,14 +18,18 @@ function MyTodoHeader() {
         event.preventDefault();
         // console.log("submit task");
         if (newTodo) {
-            const newTodoObj = {
-                todo: newTodo,
-                id: nanoid(),
-                status: false
-            }
-            setTodoList(curr => [newTodoObj, ...curr]);
+            fetchAddTodo(userObj, newTodo);
             setNewTodo("");
             setAddTask(false);
+        }
+    }
+    const fetchAddTodo = async (userObj, newTodo) => {
+        try {
+            const response = await axios.post('https://express-todo-klut.onrender.com/todo/', {firstname: userObj.firstName, lastname: userObj.lastName, task: newTodo});
+            console.log (response);
+            setTodoList(curr => [ response.data, ...curr ]);
+        } catch (err) {
+            console.log(err);
         }
     }
     return (

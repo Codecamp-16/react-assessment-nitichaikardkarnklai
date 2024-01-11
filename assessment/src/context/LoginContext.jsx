@@ -10,11 +10,16 @@ export default function LoginContextProvider({ children }) {
     const [userObj, setUserObj] = useState({});
     const [token, setToken] = useState({});
 
+    const [todoList, setTodoList] = useState([]);
+
+
     const fetchAllTodo = async () => {
         // console.log(userObj);
         try {
+            // const response = await axios.get(`https://express-todo-klut.onrender.com/todo/?firstname=Im&lastname=Nerb`);
             const response = await axios.get(`https://express-todo-klut.onrender.com/todo/?firstname=${userObj.firstName}&lastname=${userObj.lastName}`);
             console.log(response);
+            setTodoList(response.data);
         } catch (err) {
             console.log(err);
         }
@@ -40,7 +45,8 @@ export default function LoginContextProvider({ children }) {
             isLogin, setIsLogin,
             userObj, setUserObj, 
             fetchAllTodo, getMe, 
-            token, setToken
+            token, setToken,
+            todoList, setTodoList
         }}>{children}</LoginContext.Provider>
     )
 }

@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useState } from 'react'
+import { useLogin } from './LoginContext';
 
 
 const TodoContext = createContext();
 
 export default function TodoContextProvider({ children }) {
+    const {todoList, setTodoList} = useLogin();
     const [newTodo, setNewTodo] = useState(""); // {todo: xxx, id: xxx}
-    const [todoList, setTodoList] = useState([{todo: "test", status: false, id: "asdf"}]);
     const [addTask, setAddTask] = useState(false); 
     
     return (

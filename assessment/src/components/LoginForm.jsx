@@ -16,7 +16,7 @@ import axios from 'axios';
 // }
 
 function LoginForm() {
-    const { email, setEmail, password, setPassword, setIsLogin, setToken} = useLogin();
+    const { email, setEmail, password, setPassword, setIsLogin, setToken, setUserObj} = useLogin();
     const handleSubmit = (event) => {
         event.preventDefault();
         fetchLogin();
@@ -27,17 +27,12 @@ function LoginForm() {
         const loginObj = {emailOrMobile: email, password: password};
         try{
             const response = await axios.post("https://paybox-wnfo.onrender.com/auth/login", loginObj);
-            if (response.status = 200) {
-            // if (response.status < 300 && response.status >= 200) {
                 setIsLogin(true);
-                setToken(response.data.accessToken);
-            } else {
-                alert("login failed#1: username of password is incorrect");
-            }
-            // console.log (response.data.accessToken);
+                setUserObj(response.data.user);
+                // console.log (response.data.accessToken);
         } catch (err) {
             console.log(err);
-            alert("login failed#2: username of password is incorrect");
+            alert("login failed: username of password is incorrect");
         }
     }
     const handleChangeEmail = (event) => {
